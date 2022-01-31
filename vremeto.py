@@ -4,7 +4,8 @@ from utls.errors import *
 from utls.oblasti import *
 from utls.payloads import *
 from utls.bs import *
-from utls.writeout import * 
+from utls.writeout import *
+from utls.gui import * 
 class get_weather(object):
 	def __init__(self, oblast:str) -> str:
 		capital = (oblast[0].upper() + oblast[1:])
@@ -23,8 +24,8 @@ class get_weather(object):
 		except KeyboardInterrupt as fail:
 			print("\r\x0A[DATA] Try again later. . . .")
 			data = "none"
-		self.final = getWeather(data=data)
+		self.final, self.html_doc = getWeather(data=data)
 	def getw(self):
-		return self.final
+		return self.final, self.html_doc
 
 

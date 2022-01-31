@@ -28,4 +28,4 @@ def getWeather(data:str) -> str:
 	for items in signature:
 		update[items] = signature[items] + maked[count]
 		count +- 1
-	return update
+	return update, real_data
