@@ -20,6 +20,7 @@ def main():
     # you can here print it or whatever. 
     """
     print("".join(item for item in all_)
+    """
 if __name__ == "__main__":
     main()
 ```
