@@ -22,3 +22,4 @@ if __name__ == "__main__":
 		displaygraph(param="".join(app[itemx] for itemx in app))
 	else:
 		print("".join(app[itemx] for itemx in app))
+
