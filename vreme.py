@@ -18,10 +18,6 @@ class CheckSNVR(object):
 		if len(self.mashup["regions"]) >= 3:
 			if warnings == "strict":
 				warn("We recommend the 'requests' to be not bigger than 2! You provided '%d'."%(len(self.mashup["regions"])))
-		if self.mashup["regions"][0] == "all" or self.mashup["regions"][0] == "*":
-			if self.verbosity == True:
-				warn("Getting all information, about all %d regions!"%(len(oblasti)))
-			self.mashup["regions"] = (bob for bob in oblasti)
 		for items in self.mashup["regions"]:
 			if items not in oblasti:
 				if warnings == "strict":
