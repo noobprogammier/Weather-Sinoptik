@@ -7,4 +7,15 @@ Countries added:
 | Bulgaria    | Shumen, Varna, Sofia, Plovdiv, Ruse, Stara Zagora, Vidin |
 
 
-*New stuff added, you can now implement it in an other software and can be used easily, by using the "vremeto.py" program. 
+*New stuff added, you can now implement it in an other software and can be used easily, by using the "vreme.py" program.*
+Instance usage: ```python
+from vreme import * 
+def main():
+    act = CheckSNVR(region=("*"), output="html", warnings="strict") 
+    act.rnm = True
+    act.return_ogdoc = False
+    act.verbose = True
+    all_ = act.getrs
+if __name__ == "__main__":
+    main()
+```    
