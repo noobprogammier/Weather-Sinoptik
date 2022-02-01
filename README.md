@@ -10,7 +10,6 @@ Countries added:
 *New stuff added, you can now implement it in an other software and can be used easily, by using the "vreme.py" program.*
 Instance usage: 
 ```
-python
 from vreme import * 
 def main():
     act = CheckSNVR(region=("*"), output="html", warnings="strict") 
