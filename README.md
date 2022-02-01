@@ -12,7 +12,7 @@ Instance usage:
 ```
 from vreme import * 
 def main():
-    act = CheckSNVR(region=("*"), output="html", warnings="strict") 
+    act = CheckSNVR(region=("Ruse", "Varna", "Sofiq"), output="html", warnings="strict") 
     act.rnm = True
     act.return_ogdoc = False
     act.verbose = True
