@@ -7,7 +7,7 @@ Countries added:
 | Bulgaria    | Shumen, Varna, Sofia, Plovdiv, Ruse, Stara Zagora, Vidin |
 
 
-*New stuff added, you can now implement it in an other software and can be used easily, by using the "vreme.py" program.*<br>
+*New stuff added, you can now implement it in an other software and can be used easily, by using the **"vreme.py"** program.*<br>
 Instance usage: 
 ```python
 from vreme import * 
