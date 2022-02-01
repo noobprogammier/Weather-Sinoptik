@@ -17,7 +17,7 @@ def main():
     act.return_ogdoc = False
     act.verbose = True
     all_ = act.getrs
-    # you can here print it or whatever. 
+    # you can here use the print program, in order you to see the output and all the actual values. You can see an instance below.  
     """
     print("".join(item for item in all_))
     """
