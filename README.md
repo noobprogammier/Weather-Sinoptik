@@ -19,7 +19,7 @@ def main():
     all_ = act.getrs
     # you can here print it or whatever. 
     """
-    print("".join(item for item in all_)
+    print("".join(item for item in all_))
     """
 if __name__ == "__main__":
     main()
