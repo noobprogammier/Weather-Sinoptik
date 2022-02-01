@@ -9,7 +9,7 @@ Countries added:
 
 *New stuff added, you can now implement it in an other software and can be used easily, by using the "vreme.py" program.*<br>
 Instance usage: 
-```
+```python
 from vreme import * 
 def main():
     act = CheckSNVR(region=("Ruse", "Varna", "Sofia"), output="html", warnings="strict") 
@@ -17,6 +17,7 @@ def main():
     act.return_ogdoc = False
     act.verbose = True
     all_ = act.getrs
+    # you can here print it or whatever. 
 if __name__ == "__main__":
     main()
 ```
