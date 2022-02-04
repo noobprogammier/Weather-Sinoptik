@@ -29,13 +29,7 @@ Again an input."""
 			"""
 Again if it's non-entered or the item is missing in the property."""
 			raise exc(error_tab["Missing"]%(locs))
-		"""
-'after_all' variable is to notice after all the operations that were executed to finally get the required parameters, properties."""
-"""
-'html_doc' can be used for implementation in a site. I will make a "custom-made" html plate, and not the sinoptik one."""
 		after_all, html_doc = get_weather(oblast=locations[strs][locs]).getw()
-		"""
-I/O in a file."""
 		output_ = writeOutPut(file_name="%s_%s.js"%(strs+"-"+locations[strs][locs], len(after_all)), objectrel=after_all)
 		if gui == [False, True][1]:
 			"""
