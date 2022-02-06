@@ -29,14 +29,27 @@ Again an input."""
 			"""
 Again if it's non-entered or the item is missing in the property."""
 			raise exc(error_tab["Missing"]%(locs))
-		after_all, html_doc = get_weather(oblast=locations[strs][locs]).getw()
+		after_all, html_doc = get_weather(oblast=locations[strs][locs], weathermore=True).getw()
 		output_ = writeOutPut(file_name="%s_%s.js"%(strs+"-"+locations[strs][locs], len(after_all)), objectrel=after_all)
 		if gui == [False, True][1]:
 			"""
 The output. It'll be displayed in a GRAPHICAL INTERFACE, which is in beta and it looks very bad."""
 			displaygraph("Weather >> \r\x0A" + "".join("%s: %s"%(bob, after_all[bob]) for bob in after_all))
 			exit()
-		print("Weather >> \r\x0A" + "".join("%s: %s"%(bob, after_all[bob]) for bob in after_all))
+		printobjs = ""
+		neopolis = [items for items in after_all]
+		if "other_data" in neopolis:
+			del neopolis["other_data"]
+		for items in neopolis:
+			printobjs += "".join("%s >> %s"%(itemss,items[itemss]) for itemss in items)
+		if "other_data" in after_all[1]:
+			rep = [after_all[1][bob] for bob in after_all[1]][:1]
+			conclusion = ["\x0A".join("%s >> %s"%(items, after_all[1]["other_data"][items]) for items in after_all[1]["other_data"])]
+		else:
+			rep = "\0"
+			conclusion = "\0"
+		mashup = "\x0A".join(bob for bob in rep) + "\r\x0A" + "-"*30 + "\x0A" + "\x0A".join(bob for bob in conclusion) + "\r\x0A" + printobjs
+		print(mashup)
 		input("\r\x0A\r\x0A Press any key \r\x0A")
 		system("cls")
 if __name__ == "__main__":

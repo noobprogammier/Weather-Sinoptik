@@ -1,13 +1,14 @@
 from vremeto import *
 from logging import info as inf, warning as warn, error as err, DEBUG, basicConfig
 class CheckSNVR(object):
-	def __init__(self, region:list, output:str, warnings:str) -> str:
+	def __init__(self, region:list, output:str, warnings:str, weathermore:bool) -> str:
 		cases_ = {"html":("html_dualpart"), "plain":("text"), "json":("json")}[output]
 		self.mashup = {"parts":cases_, "regions":region}
 		self.stript = True
 		self.return_ogdoc = True
 		self.verbosity = False
 		self.warnings = warnings
+		self.weathermore = weathermore
 	@property
 	def getrs(self):
 		alls_ = {}
@@ -23,9 +24,9 @@ class CheckSNVR(object):
 				if warnings == "strict":
 					err("%s not found!"%(items))
 			else:
-				pans = get_weather(items).getw()
-				alls_[items] = pans[0]
-				og[items] = pans[1]
+				pans, html_doc = get_weather(items, self.weathermore).getw()
+				alls_[items] = pans
+				og[items] = html_doc
 		if self.verbosity == True:
 			warn("Loaded %d information (OG information: %d). . ."%(len(alls_), len(og)))
 		temp = {}
@@ -57,7 +58,8 @@ The actual formation .. . """
 				warn("Loading it as a html plate object. . . ")
 			final = []
 			for iterx in temp:
-				final.append(temp[iterx] + "<br><body> <span> <p> %s </p> </span> </body> </html>"%("<br>".join("%s: %s "%(sex, alls_[iterx][sex]) for sex in alls_[iterx])))
+				main_item = alls_[iterx][0]
+				final.append(temp[iterx] + "<br><body> <span> <p> %s </p> </span> </body> </html>"%("<br>".join("%s || %s: %s "%(iterx,cry, main_item[cry]) for cry in main_item)))
 		if self.stript == True:
 			if self.verbosity == True:
 				warn("Stripping the text. . ..")
@@ -94,8 +96,3 @@ If it's True"""
 		if isinstance(vl, bool) != True:
 			raise exc(error_tab["TypeError"]%("bool", type(vl)))
 		self.return_ogdoc = vl
-act = CheckSNVR(region=("*"), output="html", warnings="strict")
-act.rnm = True
-act.return_ogdoc = False
-act.verbose = True
-all_ = act.getrs

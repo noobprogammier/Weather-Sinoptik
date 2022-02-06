@@ -14,3 +14,5 @@ oblasti = {
 	"Kyustendil":"kyustendil-bulgaria-100729730"
 }
 """All the locations that exists."""
+
+

@@ -1,5 +1,27 @@
 from bs4 import BeautifulSoup
-def getWeather(data:str) -> str:
+def getWeather(data:str, weather:bool) -> str:
+	if weather == True:
+		parsed = {}
+		whole = BeautifulSoup(data.split("\r\x0A\r\x0A")[1], "html.parser")
+		parsed["town-grad"] = whole.find_all("h3", {"class":"townName"})[0].get_text().strip()
+		"""
+First item of the list is the HTML plate object
+Second item is the class or the specified id.
+Last item (third item) is the mismatch element - to be removed basically. """
+
+		pips = {"gradusi":("li", "grad", " "), "vyatur":("li", "wind", "\n"), "drugo":("li", "", "")}
+		for items in ["gradusi", "vyatur", "drugo"]:
+			parsed[items] = whole.find_all(pips[items][0], {"class":pips[items][1]})[0].get_text().strip().replace(pips[items][2], "").strip()
+		temp = {}
+		days = whole.find_all("strong")[4:]
+		drear = whole.find_all("span")[1:]
+		extended = whole.find_all("em")
+		n = 0
+		for items in days:
+			temp[items.get_text()+"-%s"%(n)] = drear[n].get_text() + "\x20||\x20" + extended[n].get_text()
+			n+=1
+		parsed["other_data"] = temp
+		return parsed, whole
 	real_data = data.split("\r\x0A\r\x0A")[1]
 	items = [val for val in [bob for bob in real_data.split("\x0A") if '<meta name="description"' in bob][0].split("=")[2]]
 	gather = "".join(bob for bob in items).split(">")[0].replace('"', "").replace("/", "")
